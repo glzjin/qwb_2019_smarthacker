@@ -1,5 +1,8 @@
 FROM ctftraining/base_image_nginx_mysql_php_73
 
+LABEL Author="glzjin <i@zhaoj.in>"
+LABEL Blog="https://www.zhaoj.in"
+
 ENV FLAG "flag{glzjin_wants_a_girl_friend}"
 
 COPY ./files/html/ /var/www/html/
