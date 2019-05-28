@@ -1,10 +1,12 @@
 FROM ctftraining/base_image_nginx_php_73
 
-LABEL Author="glzjin <i@zhaoj.in>"
-LABEL Blog="https://www.zhaoj.in"
+LABEL Author="glzjin <i@zhaoj.in>" Blog="https://www.zhaoj.in"
 
-COPY ./files /tmp/
-RUN cp -rf /tmp/html /var/www/ \
-    && cp -f /tmp/flag.sh /flag.sh \
-    && rm -rf /var/www/html/index.php \
+COPY ./files/www.tar.gz /var/www/html
+
+RUN rm index.php \
+    && tar zxf www.tar.gz \
+    && mv src/* ./ \
+    && rm -rf src index.php \
+    # compatible
     && ln -s /var/www/html/index.html /var/www/html/index.php
